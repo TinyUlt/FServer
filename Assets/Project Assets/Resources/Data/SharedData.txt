@@ -1,0 +1,35 @@
+﻿//----------------------------------------------------------------------
+// SharedData
+//----------------------------------------------------------------------
+// Here we store default data for all our games. This originates to our early dev. days and we kinda stuck with it, since it is easy and fast!
+// It is actually similar to a table/sheet, etc.
+
+// Please keep everything neatly lined out using tabs for readability, note you can use multiple tabs between variable name and value
+// IMPORTANT: 3 and 3.0 are NOT the same, if a value was previously 3.4 and you want to change it to 3, change it to 3.0 instead! Vice versa also holds,
+//            if value is currently 3 you cannot change it to 3.4 but only to whole numbers without a floating point part  (for now at least)
+
+// Ambient Light Color (ALC) consist of 3 float or int values in a list: (RGB)
+// Fog Color (FC) idem
+// Fog Start Distance (FSD), Fog End Distance (FED) single float value
+// Fog Density (FD) single float value, only used when fog is not linear. Which it is.
+// Sun Light Color (SLC) consist of 3 float or int values in a list: (RGB)
+// Sun Light Intensity (SLI) consist of single float value.
+// Hard Shadow Strength (HSS) consist of single float value.
+// Sky Box Texture (SBT) consist of a string that is added to a path BundleAssets/World/Textures/Skybox + SBT + _Texture.
+// See AmbientManager.cs for implementation and use.
+
+
+//---------------------------------------------------------------------------------
+// Missions
+//---------------------------------------------------------------------------------
+Missions_Begin
+//				#describe:[捕获10条Enemy,捕获5条AttackEnemy,拾取物品1次,收获20枚金币,消耗30枚金币,消耗10枚bullet武器,使用bullet武器捕获10条鱼,一次性捕获3条Enemy],
+	Mission1	[#catchSomething:[Enemy,AttackEnemy,Coin,Mission],#catchCount:[10,5,1,1,1],#earnCoin:20,#consumeCoin:30,#consumeWeapon:[Bullet],#consumeWeaponCount:[10],#useWeaponCatchFish:[Bullet],#useWeaponCatchFishCount:[10],#catchFishsOnce:[Enemy],#catchFishsOnceCount:[3]]
+Missions_End
+
+Player_Begin
+	Player1		[#playerMode:PlayerMode1]
+	Player2		[#playerMode:PlayerMode2]
+	Player3		[#playerMode:PlayerMode3]
+Player_End
+

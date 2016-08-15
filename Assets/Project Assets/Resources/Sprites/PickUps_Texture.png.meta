@@ -1,0 +1,375 @@
+fileFormatVersion: 2
+guid: 1b10744b8fadabd48922c0bdf66f0d34
+timeCreated: 1469002023
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: PickUps_Texture_0
+    21300002: PickUps_Texture_1
+    21300004: PickUps_Texture_2
+    21300006: PickUps_Texture_3
+    21300008: PickUps_Texture_4
+    21300010: PickUps_Texture_5
+    21300012: PickUps_Texture_6
+    21300014: PickUps_Texture_7
+    21300016: PickUps_Texture_8
+    21300018: PickUps_Texture_9
+    21300020: PickUps_Texture_10
+    21300022: PickUps_Texture_11
+    21300024: PickUps_Texture_12
+    21300026: PickUps_Texture_13
+    21300028: PickUps_Texture_14
+    21300030: PickUps_Texture_15
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: PickUps_Texture_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -64, y: 64}
+        - {x: -64, y: -64}
+        - {x: 64, y: -64}
+        - {x: 64, y: 64}
+    - name: PickUps_Texture_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 6, y: 27}
+        - {x: -48, y: 27}
+        - {x: -48, y: -15}
+        - {x: -44, y: -16}
+        - {x: 9, y: -33}
+        - {x: 15, y: -33}
+        - {x: 42, y: -19}
+        - {x: 47, y: -5}
+        - {x: 47, y: 21}
+    - name: PickUps_Texture_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -64, y: 64}
+        - {x: -64, y: -64}
+        - {x: 64, y: -64}
+        - {x: 64, y: 64}
+    - name: PickUps_Texture_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15, y: 46}
+        - {x: -59, y: 27}
+        - {x: -59, y: -45}
+        - {x: -58, y: -47}
+        - {x: 60, y: -47}
+        - {x: 60, y: 39}
+        - {x: 43, y: 46}
+    - name: PickUps_Texture_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -31, y: 37}
+        - {x: -49, y: 4}
+        - {x: -49, y: -33}
+        - {x: -47, y: -37}
+        - {x: -15, y: -40}
+        - {x: 30, y: -40}
+        - {x: 46, y: -29}
+        - {x: 46, y: 21}
+        - {x: 8, y: 37}
+    - name: PickUps_Texture_5
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -64, y: 64}
+        - {x: -64, y: -64}
+        - {x: 64, y: -64}
+        - {x: 64, y: 64}
+    - name: PickUps_Texture_6
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: -22}
+        - {x: -24, y: -22}
+        - {x: -29, y: -29}
+        - {x: -29, y: -36}
+        - {x: -20, y: -50}
+        - {x: -10, y: -50}
+        - {x: 0, y: -48}
+        - {x: 4, y: -38}
+        - {x: 4, y: -31}
+        - {x: 0, y: -25}
+      - - {x: -13, y: 49}
+        - {x: -23, y: 44}
+        - {x: -23, y: 10}
+        - {x: -3, y: -41}
+        - {x: 10, y: -45}
+        - {x: 44, y: -45}
+        - {x: 50, y: -43}
+        - {x: 50, y: 10}
+        - {x: 37, y: 49}
+      - - {x: -45, y: 12}
+        - {x: -51, y: 6}
+        - {x: -51, y: -1}
+        - {x: -44, y: -23}
+        - {x: -43, y: -26}
+        - {x: -28, y: -26}
+        - {x: -9, y: -19}
+        - {x: -9, y: 5}
+        - {x: -27, y: 12}
+    - name: PickUps_Texture_7
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -64, y: 64}
+        - {x: -64, y: -64}
+        - {x: 64, y: -64}
+        - {x: 64, y: 64}
+    - name: PickUps_Texture_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -64, y: 64}
+        - {x: -64, y: -64}
+        - {x: 64, y: -64}
+        - {x: 64, y: 64}
+    - name: PickUps_Texture_9
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -33, y: 38}
+        - {x: -51, y: 25}
+        - {x: -51, y: -9}
+        - {x: -48, y: -19}
+        - {x: -40, y: -31}
+        - {x: -32, y: -38}
+        - {x: 36, y: -38}
+        - {x: 50, y: -27}
+        - {x: 50, y: 25}
+        - {x: 46, y: 38}
+    - name: PickUps_Texture_10
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -64, y: 64}
+        - {x: -64, y: -64}
+        - {x: 64, y: -64}
+        - {x: 64, y: 64}
+    - name: PickUps_Texture_11
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -50, y: -6}
+        - {x: -64, y: -21}
+        - {x: -64, y: -52}
+        - {x: -63, y: -58}
+        - {x: 62, y: -58}
+        - {x: 64, y: -54}
+        - {x: 64, y: -22}
+        - {x: 53, y: -6}
+      - - {x: -57, y: 59}
+        - {x: -64, y: 47}
+        - {x: -64, y: 18}
+        - {x: -50, y: 7}
+        - {x: 49, y: 7}
+        - {x: 64, y: 30}
+        - {x: 64, y: 44}
+        - {x: 50, y: 59}
+    - name: PickUps_Texture_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 31}
+        - {x: -24, y: 26}
+        - {x: -24, y: -31}
+        - {x: 22, y: -31}
+        - {x: 22, y: 4}
+        - {x: 10, y: 31}
+    - name: PickUps_Texture_13
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -64, y: 64}
+        - {x: -64, y: -64}
+        - {x: 64, y: -64}
+        - {x: 64, y: 64}
+    - name: PickUps_Texture_14
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 43}
+        - {x: -32, y: 33}
+        - {x: -32, y: 8}
+        - {x: -13, y: -42}
+        - {x: 19, y: -42}
+        - {x: 34, y: -38}
+        - {x: 43, y: -23}
+        - {x: 43, y: -14}
+        - {x: 20, y: 43}
+    - name: PickUps_Texture_15
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -64, y: 64}
+        - {x: -64, y: -64}
+        - {x: 64, y: -64}
+        - {x: 64, y: 64}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
