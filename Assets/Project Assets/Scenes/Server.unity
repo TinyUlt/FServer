@@ -285,7 +285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e65d3df3466ba44dc804bbd40de30a77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: p5
+  pathName: p5
   paths:
   - {fileID: 239100800}
   - {fileID: 1296252446}
@@ -339,7 +339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e65d3df3466ba44dc804bbd40de30a77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: p3
+  pathName: p3
   paths:
   - {fileID: 1399386347}
   - {fileID: 376728284}
@@ -449,7 +449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e65d3df3466ba44dc804bbd40de30a77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: p2
+  pathName: p2
   paths:
   - {fileID: 1067471865}
   - {fileID: 727176159}
@@ -531,7 +531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e65d3df3466ba44dc804bbd40de30a77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: p4
+  pathName: p4
   paths:
   - {fileID: 2145745261}
   - {fileID: 2090080258}
@@ -1466,7 +1466,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e65d3df3466ba44dc804bbd40de30a77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: p1
+  pathName: p1
   paths:
   - {fileID: 1259628055}
   - {fileID: 1063963059}
@@ -1651,7 +1651,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e65d3df3466ba44dc804bbd40de30a77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: p
+  pathName: p
   paths:
   - {fileID: 365893824}
   - {fileID: 368592197}
