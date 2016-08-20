@@ -1568,6 +1568,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1726081159}
   - 114: {fileID: 1726081160}
+  - 114: {fileID: 1726081161}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -1606,6 +1607,17 @@ MonoBehaviour:
   SceneConfig: {fileID: 4900000, guid: 6d5c6ec270e7b49baa00668ac57fca2c, type: 3}
   MaxSceneCount: 0
   DelayCreateFishFrame: 0
+--- !u!114 &1726081161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1726081158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a2c68e5889b544ce9579515be116163, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1737865937
 GameObject:
   m_ObjectHideFlags: 0
