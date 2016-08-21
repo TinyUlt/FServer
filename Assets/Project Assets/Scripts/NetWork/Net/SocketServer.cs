@@ -94,7 +94,7 @@ public class SocketServer : MonoBehaviour
     public virtual void SendMessage(NetPacket packet, enSocketType socketType)
     {
         int mainCmdId = 0, subCmdId = 0;
-        if (MessageCenter.GetInstance().GetMessageID(packet, ref mainCmdId, ref subCmdId, socketType) == false)
+        if (MessageCenter.GetInstance().GetMessageID(packet, ref mainCmdId,  socketType) == false)
         {
 			Debug.LogError("客户端不存在发送结构对应的消息号 " + packet);
             return;
@@ -130,7 +130,7 @@ public class SocketServer : MonoBehaviour
     protected virtual void ReceiveMessageCallback(IntPtr This, IntPtr custom, enSocketType SocketType, int MainCmdId, int SubCmdId, IntPtr Buffer, UInt16 Length, Int64 CmdNo, UInt16 SocketID)
     {
 //        GameManager.GetInstance().EndLoading();
-        Type packetType = MessageCenter.GetInstance().GetMessageStruct(MainCmdId, SubCmdId, SocketType);
+        Type packetType = MessageCenter.GetInstance().GetMessageStruct(MainCmdId,  SocketType);
         if (packetType == null)
         {
             Debug.LogError("客户端不存在消息对应的结构 " + MainCmdId + " " + SubCmdId);

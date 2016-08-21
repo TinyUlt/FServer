@@ -40,116 +40,116 @@ public class MessageCenter
     private void InitMessageStructMapper()
     {
 		//登陆socket
-		AddMessageStructMapper<CMD_GP_NoStruct>(Messages.MDM_GP_HEAT, Messages.SUB_MB_HEAT_BEAT,enSocketType.SocketType_Login);
+		AddMessageStructMapper<CMD_GP_NoStruct>(Messages.MDM_GP_HEAT, enSocketType.SocketType_Login);
 		//登录
-		AddMessageStructMapper<CMD_GP_LogonFailure>(Messages.MDM_GP_LOGON, Messages.SUB_GP_LOGON_FAILURE,enSocketType.SocketType_Login);
-		AddMessageStructMapper<DBO_GP_LogonSuccess>(Messages.MDM_GP_LOGON, Messages.SUB_GP_LOGON_SUCCESS,enSocketType.SocketType_Login);
-		AddMessageStructMapper<CMD_GP_LogonAccounts>(Messages.MDM_GP_LOGON, Messages.SUB_GP_LOGON_ACCOUNTS,enSocketType.SocketType_Login);
-		AddMessageStructMapper<CMD_GP_RegisterAccounts>(Messages.MDM_GP_LOGON, Messages.SUB_GP_REGISTER_ACCOUNTS,enSocketType.SocketType_Login);
-		AddMessageStructMapper<CMD_GP_NoStruct>(Messages.MDM_GP_LOGON, Messages.SUB_GP_LOGON_FINISH,enSocketType.SocketType_Login);
-		//列表信息
-		AddMessageStructMapper<tagGameKinds>(Messages.MDM_GP_SERVER_LIST, Messages.SUB_GP_LIST_KIND,enSocketType.SocketType_Login);
-		AddMessageStructMapper<tagGameTypes>(Messages.MDM_GP_SERVER_LIST, Messages.SUB_GP_LIST_TYPE,enSocketType.SocketType_Login);
-		AddMessageStructMapper<CMD_GP_GameNewNum>(Messages.MDM_GP_SERVER_LIST, Messages.SUB_GP_GET_NEWSUM,enSocketType.SocketType_Login);
-		AddMessageStructMapper<CMD_GP_SysemMessage>(Messages.MDM_GP_SERVER_LIST, Messages.SUB_GP_GET_SYSTEM_MESSAGE,enSocketType.SocketType_Login);
-		AddMessageStructMapper<tagGameServers>(Messages.MDM_GP_SERVER_LIST, Messages.SUB_GP_LIST_SERVER,enSocketType.SocketType_Login);
-		AddMessageStructMapper<CMD_GP_NoStruct>(Messages.MDM_GP_SERVER_LIST, Messages.SUB_GP_LIST_FINISH,enSocketType.SocketType_Login);
-
-		//喇叭
-		AddMessageStructMapper<CMD_GR_GetUserProp>(Messages.MDM_GP_HORN_LOGON, Messages.SUB_GP_GetUSERPROP,enSocketType.SocketType_Speak);
-		AddMessageStructMapper<CMD_GP_NoStruct>(Messages.MDM_GP_HORN_LOGON, Messages.SUB_GR_SEND_SUCCESS,enSocketType.SocketType_Speak);
-		AddMessageStructMapper<CMD_GetLaBaCostOrNum>(Messages.MDM_GP_HORN_LOGON, Messages.SUB_GR_PROP_COST,enSocketType.SocketType_Speak);
-		AddMessageStructMapper<CMD_GR_S_SendTrumpet>(Messages.MDM_GP_HORN_LOGON, Messages.SUB_GR_HORN_BIG,enSocketType.SocketType_Speak);
-		AddMessageStructMapper<CMD_GP_UserHronFailure>(Messages.MDM_GP_HORN_LOGON, Messages.SUB_GR_SEND_Failure,enSocketType.SocketType_Speak);
-
-//		AddMessageStructMapper<CMD_GR_Send_SendTrumpet>(Messages.MDM_GP_HORN_LOGON, Messages.SUB_GR_HORN_BIG,enSocketType.SocketType_Speak);
-//		AddMessageStructMapper<CMD_GR_S_SendTrumpet>(Messages.MDM_GR_USER, Messages.SUB_GR_PROPERTY_TRUMPET_NEW,enSocketType.SocketType_Speak);
-//		AddMessageStructMapper<CMD_GetLaBaCostOrNum>(Messages.MDM_GR_USER, Messages.SUB_GR_REQUEST_PROPERTY_COST,enSocketType.SocketType_Speak);
-//		AddMessageStructMapper<CMD_GP_RecoidCnts>(Messages.MDM_GP_LOGON, Messages.SUB_GP_QUERY_MESSAGE,enSocketType.SocketType_Speak);
-		//银行 个人中心
-		AddMessageStructMapper<CMD_GP_UserFaceInfo>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GP_USER_FACE_INFO,enSocketType.SocketType_Login);
-		AddMessageStructMapper<CMD_GP_UserIndividual>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GP_USER_INDIVIDUAL,enSocketType.SocketType_Login);
-		AddMessageStructMapper<CMD_GP_LogonFailure>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GP_OPERATE_FAILURE,enSocketType.SocketType_Login);
-		AddMessageStructMapper<CMD_GP_LogonFailure>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GP_OPERATE_SUCCESS,enSocketType.SocketType_Login);
-		AddMessageStructMapper<CMD_GP_UserLogonBank>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GP_USER_LOGONBANK,enSocketType.SocketType_Login);
-		AddMessageStructMapper<CMD_GP_NoStruct>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GP_LOGONBANK_FAILURE,enSocketType.SocketType_Login);
-		AddMessageStructMapper<CMD_GP_UserLogonBankSuccess>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GP_LOGONBANK_SUCCESS,enSocketType.SocketType_Login);
-		AddMessageStructMapper<CMD_GP_BankLogonFailure>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GP_LOGONBANK_FAILURE,enSocketType.SocketType_Login);
-		AddMessageStructMapper<CMD_GP_UserInsureInfo>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GP_USER_INSURE_INFO, enSocketType.SocketType_Login);
-		AddMessageStructMapper<CMD_GP_UserInsureSuccess>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GP_USER_INSURE_SUCCESS,enSocketType.SocketType_Login);
-		AddMessageStructMapper<CMD_GP_UserInsureFailure>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GP_USER_INSURE_FAILURE,enSocketType.SocketType_Login);
-		AddMessageStructMapper<CMD_GP_UserTransferUserInfo>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GP_QUERY_USER_INFO_RESULT,enSocketType.SocketType_Login);
-		AddMessageStructMapper<CMD_GP_BankDetailResults>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GP_BANK_DETAIL_RESULT,enSocketType.SocketType_Login);
-		AddMessageStructMapper<CMD_GP_ReturnYSSocre>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GR_QUERY_RETURN_SCORE,enSocketType.SocketType_Login);
-		AddMessageStructMapper<CMD_GR_ChangeReturnInfo>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_CHANGE_RETURN_INFO,enSocketType.SocketType_Login);
-
-        AddMessageStructMapper<CMD_GP_QueryInsureInfo>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GP_QUERY_INSURE_INFO, enSocketType.SocketType_Login);
-        AddMessageStructMapper<CMD_GP_GetUserReturnScore>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GR_GETUSER_SCORE, enSocketType.SocketType_Login);
-        AddMessageStructMapper<CMD_GP_UserTakeScore>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GP_USER_TAKE_SCORE, enSocketType.SocketType_Login);
-        AddMessageStructMapper<CMD_GP_UserSaveScore>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GP_USER_SAVE_SCORE, enSocketType.SocketType_Login);
-        AddMessageStructMapper<CMD_GP_QueryUserInfoRequest>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GP_QUERY_USER_INFO_REQUEST, enSocketType.SocketType_Login);
-        AddMessageStructMapper<CMD_GP_QueryReturnSocre>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GR_QUERY_RETURN, enSocketType.SocketType_Login);
-        AddMessageStructMapper<CMD_GP_QueryBankDetail>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GP_QUERY_BANK_DETAIL, enSocketType.SocketType_Login);
-        AddMessageStructMapper<CMD_GP_UserTransferScore>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GP_USER_TRANSFER_SCORE, enSocketType.SocketType_Login);
-        //选位置坐下
-        AddMessageStructMapper<CMD_GR_UserSitDown>(Messages.MDM_GR_USER, Messages.SUB_GR_USER_SITDOWN,enSocketType.SocketType_Room);
-		//登陆游戏房间
-		AddMessageStructMapper<CMD_GR_LogonUserID>(Messages.MDM_GP_LOGON, Messages.SUB_GR_LOGON_USERID,enSocketType.SocketType_Room);
-		//游戏状态
-		AddMessageStructMapper<CMD_GF_GameStatus>(Messages.MDM_GF_FRAME, Messages.SUB_GF_GAME_STATUS,enSocketType.SocketType_Room);
-		//...
-		AddMessageStructMapper<DBO_GP_LogonSuccess>(Messages.MDM_GR_LOGON, Messages.SUB_GR_LOGON_SUCCESS,enSocketType.SocketType_Room);
-		AddMessageStructMapper<CMD_GP_NoStruct>(Messages.MDM_GR_LOGON, Messages.SUB_GR_LOGON_FINISH,enSocketType.SocketType_Room);
-		AddMessageStructMapper<CMD_GR_LogonFailure>(Messages.MDM_GR_LOGON, Messages.SUB_GR_LOGON_FAILURE,enSocketType.SocketType_Room);
-		AddMessageStructMapper<CMD_GP_LogonFailure>(Messages.MDM_GR_LOGON, Messages.SUB_GR_LOGON_IPLIST,enSocketType.SocketType_Room);
-		AddMessageStructMapper<CMD_GR_PcConfigServer>(Messages.MDM_GR_CONFIG, Messages.SUB_GR_CONFIG_SERVER,enSocketType.SocketType_Room);
-		AddMessageStructMapper<CMD_GR_ConfigColumn>(Messages.MDM_GR_CONFIG, Messages.SUB_GR_CONFIG_COLUMN,enSocketType.SocketType_Room);
-		AddMessageStructMapper<CMD_GP_NoStruct>(Messages.MDM_GR_CONFIG, Messages.SUB_GR_CONFIG_PROPERTY,enSocketType.SocketType_Room);
-		AddMessageStructMapper<CMD_GP_NoStruct>(Messages.MDM_GR_CONFIG, Messages.SUB_GR_CONFIG_FINISH,enSocketType.SocketType_Room);
-		AddMessageStructMapper<CMD_GR_TableInfo>(Messages.MDM_GR_STATUS, Messages.SUB_GR_TABLE_INFO,enSocketType.SocketType_Room);
-
-		AddMessageStructMapper<CMD_GR_TableStatus>(Messages.MDM_GR_STATUS, Messages.SUB_GR_TABLE_STATUS,enSocketType.SocketType_Room);
-		//...
-		AddMessageStructMapper<CMD_GF_GameScene>(Messages.MDM_GF_FRAME, Messages.SUB_GF_GAME_SCENE,enSocketType.SocketType_Room);
-		AddMessageStructMapper<CMD_GR_TableInfo>(Messages.MDM_GR_STATUS, Messages.SUB_GR_TABLE_INFO,enSocketType.SocketType_Room);
-		//用户信息
-		AddMessageStructMapper<tagUserInfo>(Messages.MDM_GR_USER, Messages.SUB_GR_USER_ENTER,enSocketType.SocketType_Room);
-		AddMessageStructMapper<CMD_GP_NoStruct>(Messages.MDM_GR_USER, Messages.SUB_GR_USER_PACKAGE,enSocketType.SocketType_Room);
-
-		AddMessageStructMapper<CMD_GR_UserScore>(Messages.MDM_GR_USER, Messages.SUB_GR_USER_SCORE,enSocketType.SocketType_Room);
-		AddMessageStructMapper<CMD_GR_UserStatus>(Messages.MDM_GR_USER, Messages.SUB_GR_USER_STATUS,enSocketType.SocketType_Room);
-		AddMessageStructMapper<CMD_GR_RequestFailure>(Messages.MDM_GR_USER, Messages.SUB_GR_REQUEST_FAILURE,enSocketType.SocketType_Room);
-		//系统消息
-		AddMessageStructMapper<CMD_CM_SystemMessage>(Messages.MDM_CM_SYSTEM, Messages.SUB_CM_SYSTEM_MESSAGE,enSocketType.SocketType_Room);
-
-		AddMessageStructMapper<CMD_GF_GameOption>(Messages.MDM_GF_FRAME, Messages.SUB_GF_GAME_OPTION,enSocketType.SocketType_Room);
-		AddMessageStructMapper<CMD_CM_SystemMessage>(Messages.MDM_GF_FRAME, Messages.SUB_GF_SYSTEM_MESSAGE,enSocketType.SocketType_Room);//滚动消息
+//		AddMessageStructMapper<CMD_GP_LogonFailure>(Messages.MDM_GP_LOGON, Messages.SUB_GP_LOGON_FAILURE,enSocketType.SocketType_Login);
+//		AddMessageStructMapper<DBO_GP_LogonSuccess>(Messages.MDM_GP_LOGON, Messages.SUB_GP_LOGON_SUCCESS,enSocketType.SocketType_Login);
+//		AddMessageStructMapper<CMD_GP_LogonAccounts>(Messages.MDM_GP_LOGON, Messages.SUB_GP_LOGON_ACCOUNTS,enSocketType.SocketType_Login);
+//		AddMessageStructMapper<CMD_GP_RegisterAccounts>(Messages.MDM_GP_LOGON, Messages.SUB_GP_REGISTER_ACCOUNTS,enSocketType.SocketType_Login);
+//		AddMessageStructMapper<CMD_GP_NoStruct>(Messages.MDM_GP_LOGON, Messages.SUB_GP_LOGON_FINISH,enSocketType.SocketType_Login);
+//		//列表信息
+//		AddMessageStructMapper<tagGameKinds>(Messages.MDM_GP_SERVER_LIST, Messages.SUB_GP_LIST_KIND,enSocketType.SocketType_Login);
+//		AddMessageStructMapper<tagGameTypes>(Messages.MDM_GP_SERVER_LIST, Messages.SUB_GP_LIST_TYPE,enSocketType.SocketType_Login);
+//		AddMessageStructMapper<CMD_GP_GameNewNum>(Messages.MDM_GP_SERVER_LIST, Messages.SUB_GP_GET_NEWSUM,enSocketType.SocketType_Login);
+//		AddMessageStructMapper<CMD_GP_SysemMessage>(Messages.MDM_GP_SERVER_LIST, Messages.SUB_GP_GET_SYSTEM_MESSAGE,enSocketType.SocketType_Login);
+//		AddMessageStructMapper<tagGameServers>(Messages.MDM_GP_SERVER_LIST, Messages.SUB_GP_LIST_SERVER,enSocketType.SocketType_Login);
+//		AddMessageStructMapper<CMD_GP_NoStruct>(Messages.MDM_GP_SERVER_LIST, Messages.SUB_GP_LIST_FINISH,enSocketType.SocketType_Login);
+//
+//		//喇叭
+//		AddMessageStructMapper<CMD_GR_GetUserProp>(Messages.MDM_GP_HORN_LOGON, Messages.SUB_GP_GetUSERPROP,enSocketType.SocketType_Speak);
+//		AddMessageStructMapper<CMD_GP_NoStruct>(Messages.MDM_GP_HORN_LOGON, Messages.SUB_GR_SEND_SUCCESS,enSocketType.SocketType_Speak);
+//		AddMessageStructMapper<CMD_GetLaBaCostOrNum>(Messages.MDM_GP_HORN_LOGON, Messages.SUB_GR_PROP_COST,enSocketType.SocketType_Speak);
+//		AddMessageStructMapper<CMD_GR_S_SendTrumpet>(Messages.MDM_GP_HORN_LOGON, Messages.SUB_GR_HORN_BIG,enSocketType.SocketType_Speak);
+//		AddMessageStructMapper<CMD_GP_UserHronFailure>(Messages.MDM_GP_HORN_LOGON, Messages.SUB_GR_SEND_Failure,enSocketType.SocketType_Speak);
+//
+////		AddMessageStructMapper<CMD_GR_Send_SendTrumpet>(Messages.MDM_GP_HORN_LOGON, Messages.SUB_GR_HORN_BIG,enSocketType.SocketType_Speak);
+////		AddMessageStructMapper<CMD_GR_S_SendTrumpet>(Messages.MDM_GR_USER, Messages.SUB_GR_PROPERTY_TRUMPET_NEW,enSocketType.SocketType_Speak);
+////		AddMessageStructMapper<CMD_GetLaBaCostOrNum>(Messages.MDM_GR_USER, Messages.SUB_GR_REQUEST_PROPERTY_COST,enSocketType.SocketType_Speak);
+////		AddMessageStructMapper<CMD_GP_RecoidCnts>(Messages.MDM_GP_LOGON, Messages.SUB_GP_QUERY_MESSAGE,enSocketType.SocketType_Speak);
+//		//银行 个人中心
+//		AddMessageStructMapper<CMD_GP_UserFaceInfo>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GP_USER_FACE_INFO,enSocketType.SocketType_Login);
+//		AddMessageStructMapper<CMD_GP_UserIndividual>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GP_USER_INDIVIDUAL,enSocketType.SocketType_Login);
+//		AddMessageStructMapper<CMD_GP_LogonFailure>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GP_OPERATE_FAILURE,enSocketType.SocketType_Login);
+//		AddMessageStructMapper<CMD_GP_LogonFailure>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GP_OPERATE_SUCCESS,enSocketType.SocketType_Login);
+//		AddMessageStructMapper<CMD_GP_UserLogonBank>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GP_USER_LOGONBANK,enSocketType.SocketType_Login);
+//		AddMessageStructMapper<CMD_GP_NoStruct>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GP_LOGONBANK_FAILURE,enSocketType.SocketType_Login);
+//		AddMessageStructMapper<CMD_GP_UserLogonBankSuccess>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GP_LOGONBANK_SUCCESS,enSocketType.SocketType_Login);
+//		AddMessageStructMapper<CMD_GP_BankLogonFailure>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GP_LOGONBANK_FAILURE,enSocketType.SocketType_Login);
+//		AddMessageStructMapper<CMD_GP_UserInsureInfo>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GP_USER_INSURE_INFO, enSocketType.SocketType_Login);
+//		AddMessageStructMapper<CMD_GP_UserInsureSuccess>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GP_USER_INSURE_SUCCESS,enSocketType.SocketType_Login);
+//		AddMessageStructMapper<CMD_GP_UserInsureFailure>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GP_USER_INSURE_FAILURE,enSocketType.SocketType_Login);
+//		AddMessageStructMapper<CMD_GP_UserTransferUserInfo>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GP_QUERY_USER_INFO_RESULT,enSocketType.SocketType_Login);
+//		AddMessageStructMapper<CMD_GP_BankDetailResults>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GP_BANK_DETAIL_RESULT,enSocketType.SocketType_Login);
+//		AddMessageStructMapper<CMD_GP_ReturnYSSocre>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GR_QUERY_RETURN_SCORE,enSocketType.SocketType_Login);
+//		AddMessageStructMapper<CMD_GR_ChangeReturnInfo>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_CHANGE_RETURN_INFO,enSocketType.SocketType_Login);
+//
+//        AddMessageStructMapper<CMD_GP_QueryInsureInfo>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GP_QUERY_INSURE_INFO, enSocketType.SocketType_Login);
+//        AddMessageStructMapper<CMD_GP_GetUserReturnScore>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GR_GETUSER_SCORE, enSocketType.SocketType_Login);
+//        AddMessageStructMapper<CMD_GP_UserTakeScore>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GP_USER_TAKE_SCORE, enSocketType.SocketType_Login);
+//        AddMessageStructMapper<CMD_GP_UserSaveScore>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GP_USER_SAVE_SCORE, enSocketType.SocketType_Login);
+//        AddMessageStructMapper<CMD_GP_QueryUserInfoRequest>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GP_QUERY_USER_INFO_REQUEST, enSocketType.SocketType_Login);
+//        AddMessageStructMapper<CMD_GP_QueryReturnSocre>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GR_QUERY_RETURN, enSocketType.SocketType_Login);
+//        AddMessageStructMapper<CMD_GP_QueryBankDetail>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GP_QUERY_BANK_DETAIL, enSocketType.SocketType_Login);
+//        AddMessageStructMapper<CMD_GP_UserTransferScore>(Messages.MDM_GP_USER_SERVICE, Messages.SUB_GP_USER_TRANSFER_SCORE, enSocketType.SocketType_Login);
+//        //选位置坐下
+//        AddMessageStructMapper<CMD_GR_UserSitDown>(Messages.MDM_GR_USER, Messages.SUB_GR_USER_SITDOWN,enSocketType.SocketType_Room);
+//		//登陆游戏房间
+//		AddMessageStructMapper<CMD_GR_LogonUserID>(Messages.MDM_GP_LOGON, Messages.SUB_GR_LOGON_USERID,enSocketType.SocketType_Room);
+//		//游戏状态
+//		AddMessageStructMapper<CMD_GF_GameStatus>(Messages.MDM_GF_FRAME, Messages.SUB_GF_GAME_STATUS,enSocketType.SocketType_Room);
+//		//...
+//		AddMessageStructMapper<DBO_GP_LogonSuccess>(Messages.MDM_GR_LOGON, Messages.SUB_GR_LOGON_SUCCESS,enSocketType.SocketType_Room);
+//		AddMessageStructMapper<CMD_GP_NoStruct>(Messages.MDM_GR_LOGON, Messages.SUB_GR_LOGON_FINISH,enSocketType.SocketType_Room);
+//		AddMessageStructMapper<CMD_GR_LogonFailure>(Messages.MDM_GR_LOGON, Messages.SUB_GR_LOGON_FAILURE,enSocketType.SocketType_Room);
+//		AddMessageStructMapper<CMD_GP_LogonFailure>(Messages.MDM_GR_LOGON, Messages.SUB_GR_LOGON_IPLIST,enSocketType.SocketType_Room);
+//		AddMessageStructMapper<CMD_GR_PcConfigServer>(Messages.MDM_GR_CONFIG, Messages.SUB_GR_CONFIG_SERVER,enSocketType.SocketType_Room);
+//		AddMessageStructMapper<CMD_GR_ConfigColumn>(Messages.MDM_GR_CONFIG, Messages.SUB_GR_CONFIG_COLUMN,enSocketType.SocketType_Room);
+//		AddMessageStructMapper<CMD_GP_NoStruct>(Messages.MDM_GR_CONFIG, Messages.SUB_GR_CONFIG_PROPERTY,enSocketType.SocketType_Room);
+//		AddMessageStructMapper<CMD_GP_NoStruct>(Messages.MDM_GR_CONFIG, Messages.SUB_GR_CONFIG_FINISH,enSocketType.SocketType_Room);
+//		AddMessageStructMapper<CMD_GR_TableInfo>(Messages.MDM_GR_STATUS, Messages.SUB_GR_TABLE_INFO,enSocketType.SocketType_Room);
+//
+//		AddMessageStructMapper<CMD_GR_TableStatus>(Messages.MDM_GR_STATUS, Messages.SUB_GR_TABLE_STATUS,enSocketType.SocketType_Room);
+//		//...
+//		AddMessageStructMapper<CMD_GF_GameScene>(Messages.MDM_GF_FRAME, Messages.SUB_GF_GAME_SCENE,enSocketType.SocketType_Room);
+//		AddMessageStructMapper<CMD_GR_TableInfo>(Messages.MDM_GR_STATUS, Messages.SUB_GR_TABLE_INFO,enSocketType.SocketType_Room);
+//		//用户信息
+//		AddMessageStructMapper<tagUserInfo>(Messages.MDM_GR_USER, Messages.SUB_GR_USER_ENTER,enSocketType.SocketType_Room);
+//		AddMessageStructMapper<CMD_GP_NoStruct>(Messages.MDM_GR_USER, Messages.SUB_GR_USER_PACKAGE,enSocketType.SocketType_Room);
+//
+//		AddMessageStructMapper<CMD_GR_UserScore>(Messages.MDM_GR_USER, Messages.SUB_GR_USER_SCORE,enSocketType.SocketType_Room);
+//		AddMessageStructMapper<CMD_GR_UserStatus>(Messages.MDM_GR_USER, Messages.SUB_GR_USER_STATUS,enSocketType.SocketType_Room);
+//		AddMessageStructMapper<CMD_GR_RequestFailure>(Messages.MDM_GR_USER, Messages.SUB_GR_REQUEST_FAILURE,enSocketType.SocketType_Room);
+//		//系统消息
+//		AddMessageStructMapper<CMD_CM_SystemMessage>(Messages.MDM_CM_SYSTEM, Messages.SUB_CM_SYSTEM_MESSAGE,enSocketType.SocketType_Room);
+//
+//		AddMessageStructMapper<CMD_GF_GameOption>(Messages.MDM_GF_FRAME, Messages.SUB_GF_GAME_OPTION,enSocketType.SocketType_Room);
+//		AddMessageStructMapper<CMD_CM_SystemMessage>(Messages.MDM_GF_FRAME, Messages.SUB_GF_SYSTEM_MESSAGE,enSocketType.SocketType_Room);//滚动消息
     }
 
-	public void AddMessageStructMapper<T>(int MainCmdId, int SubCmdId,enSocketType socketType)
+	public void AddMessageStructMapper<T>(int MainCmdId, enSocketType socketType)
     { 
 		if (!m_MessageID2Type.ContainsKey (socketType)) {
 			m_MessageID2Type [socketType] = new Dictionary<int, Type> ();
 			m_MessageType2ID [socketType] = new Dictionary<Type, int> ();
 		}
-        int id = MainCmdId * MAIN_ID_MULT + SubCmdId;
+        int id = MainCmdId * MAIN_ID_MULT ;
         Type t = typeof(T);
 		m_MessageID2Type[socketType][id] = t;
 		m_MessageType2ID[socketType][t] = id;
     }
 
-	public void RemoveMessageStructMapper (int mainCmd, int subCmd, enSocketType socketType){
+	public void RemoveMessageStructMapper (int mainCmd,  enSocketType socketType){
 		if (m_MessageID2Type.ContainsKey (socketType)) {
-			int id = mainCmd * MAIN_ID_MULT + subCmd;
+			int id = mainCmd * MAIN_ID_MULT ;
 			Type t = m_MessageID2Type [socketType][id];
 			m_MessageID2Type [socketType].Remove (id);
 			m_MessageType2ID [socketType].Remove(t);
 		}
 	}
 
-	public Type GetMessageStruct(int MainCmdId, int SubCmdId,enSocketType socketType)
+	public Type GetMessageStruct(int MainCmdId, enSocketType socketType)
     {
-        int id = MainCmdId * MAIN_ID_MULT + SubCmdId;
+        int id = MainCmdId * MAIN_ID_MULT ;
 		if (m_MessageID2Type.ContainsKey(socketType) && m_MessageID2Type[socketType].ContainsKey(id))
         {
 			return m_MessageID2Type[socketType][id];
@@ -157,14 +157,14 @@ public class MessageCenter
         return null;
     }
 
-	public bool GetMessageID(NetPacket packet, ref int mainCmdID, ref int subCmdId,enSocketType socketType)
+	public bool GetMessageID(NetPacket packet, ref int mainCmdID, enSocketType socketType)
     {
         Type t = packet.GetType();
 		if (m_MessageType2ID.ContainsKey(socketType) && m_MessageType2ID[socketType].ContainsKey(t))
         {
 			int id = m_MessageType2ID[socketType][t];
             mainCmdID = id / MAIN_ID_MULT;
-            subCmdId = id - mainCmdID * MAIN_ID_MULT;
+            
             return true;
         }
         return false;

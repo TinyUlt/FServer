@@ -8,14 +8,18 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
-
-
+using Google.Protobuf.Gt;
+using Google.Protobuf;
 public class MainNet : MonoBehaviour {
 
 	private string key = "#5954d87ccc24fe7527075f2629ec22d26e317af0";
 
 	private string url = "http://175.43.23.15:8080?cmd=1030";
 
+
+	private string sessionid;
+
+	private string uid;
 	public static string SHA1(string text)
 	{
 		byte[] cleanBytes = System.Text.Encoding.Default.GetBytes(text);
@@ -66,9 +70,9 @@ public class MainNet : MonoBehaviour {
 
 		var gateway = Convert.ToString (data ["gateway"]);
 
-		var uid = data ["uid"];
+		uid = Convert.ToString(data ["uid"]);
 
-		var sessionid = data ["sessionid"];
+		sessionid = Convert.ToString(data ["sessionid"]);
 
 		print ("gateway:" + gateway);
 		var ip_port = gateway.Split (':');
@@ -79,15 +83,30 @@ public class MainNet : MonoBehaviour {
 		startNet(ip, Convert.ToInt32( port));
 	}
 
+	byte[] codeData( byte[] data )
+	{
+		byte []key = {69, 123, 132, 104, 67, 95, 33, 74, 120, 131, 61, 101, 55, 101, 69, 44};
 
+		for (int i = 0; i< data.Length; i++)
+		{
+
+			data[i]^= key[(i) % key.Length];
+		}
+		return data;
+	}
 	void startNet(string ip, int port){
 	
 //		var name = "test123123";
 //		var password = "123123";
 		MessageCenter.GetInstance ().ConnectServer (enSocketType.SocketType_Login,ip, port,()=>{
-			//StartMainLogon(name, password);
+			StartMainLogon(sessionid, uid);
 
 			Debug.Log("连接服务器成功 hh");
+
+
+
+			//SocketClient.m_socket.Send(result,0,result.Length,SocketFlags.None);
+			//SocketServer.Instance.SendMessage (_logonStruct,enSocketType.SocketType_Login);
 		});
 	}
 	// Update is called once per frame
@@ -95,23 +114,70 @@ public class MainNet : MonoBehaviour {
 	
 	}
 
-	public void StartMainLogon(string accounts, string password)
+	public void StartMainLogon(string Sessionid, string Uid)
 	{
-		CMD_GP_LogonAccounts _logonStruct = new CMD_GP_LogonAccounts();
-
-		_logonStruct.dwPlazaVersion = GameUtils.GetInstance().GetPlazaVersion();
-		_logonStruct.szMachineID = GameUtils.GetInstance().GetMachineID();
-		_logonStruct.dwClientIP = GameUtils.GetInstance().GetIP();
-		_logonStruct.szPassword = GameUtils.GetInstance().GetMD5String(password);
-		_logonStruct.szAccounts = accounts.ToCharArray();
-		_logonStruct.cbValidateFlags = GameUtils.GetInstance().GetValidateFlags();
-		_logonStruct.szPhonePassword = "".ToCharArray();
-		_logonStruct.dwLogonType = GameUtils.GetInstance().GetLogonType();
-		_logonStruct.dwClientVersion = 5003;
-		_logonStruct.szCdkey = "264bfbefa3525dfc5107f6f2d1e68669".ToCharArray();
+//		CMD_GP_LogonAccounts _logonStruct = new CMD_GP_LogonAccounts();
+//
+//		_logonStruct.dwPlazaVersion = GameUtils.GetInstance().GetPlazaVersion();
+//		_logonStruct.szMachineID = GameUtils.GetInstance().GetMachineID();
+//		_logonStruct.dwClientIP = GameUtils.GetInstance().GetIP();
+//		_logonStruct.szPassword = GameUtils.GetInstance().GetMD5String(password);
+//		_logonStruct.szAccounts = accounts.ToCharArray();
+//		_logonStruct.cbValidateFlags = GameUtils.GetInstance().GetValidateFlags();
+//		_logonStruct.szPhonePassword = "".ToCharArray();
+//		_logonStruct.dwLogonType = GameUtils.GetInstance().GetLogonType();
+//		_logonStruct.dwClientVersion = 5003;
+//		_logonStruct.szCdkey = "264bfbefa3525dfc5107f6f2d1e68669".ToCharArray();
 
 		//UserData.GetInstance ().userPassword = password;
 
-		SocketServer.Instance.SendMessage (_logonStruct,enSocketType.SocketType_Login);
+		LoginRequest request = new LoginRequest();
+
+		request.Sessionid = sessionid;
+
+		request.Uid = uid;
+
+
+
+		//IMessage m = request;
+
+
+//		int msgId = 3;
+//
+//
+//		var loads = request.ToByteArray ();
+//		codeData (loads);
+//
+//		byte[] mMagic =System.Text.Encoding.Default.GetBytes ( "GTV1" );//  "GTV1";
+//
+//		var lenght = mMagic.Length + 2 + 2 + loads.Length;
+//
+//		var result = new byte[lenght];
+//
+//		for(var i = 0; i < mMagic.Length; i++){
+//			result[i] = mMagic[i];
+//		}
+//
+//		byte[] twochar = new byte[2]	;
+//		twochar[0] = (byte)(msgId>>8);
+//		twochar[1] = (byte)(msgId>>0);
+//
+//		for(var i = 0; i < 2; i++){
+//			result[i + mMagic.Length] = twochar[i];
+//		}
+//
+//		twochar[0] = (byte)(loads.Length>>8);
+//		twochar[1] = (byte)(loads.Length>>0);
+//
+//		for(var i = 0; i < 2 ; i++){
+//			result[i + mMagic.Length + 2] = twochar[i];
+//		}
+//
+//		for(var i =0; i < loads.Length; i++){
+//			result[i + mMagic.Length + 2 + 2] = loads[i];
+//		}
+	
+
+		//SocketServer.Instance.SendMessage (enSocketType.SocketType_Login, request);
 	}
 }

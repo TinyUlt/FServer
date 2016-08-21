@@ -234,7 +234,7 @@ public class SocketClient{
 			return;
 		}
 
-		Type packetType = MessageCenter.GetInstance().GetMessageStruct((int)MainCmdId, (int)SubCmdId,(enSocketType)m_socketType);
+		Type packetType = MessageCenter.GetInstance().GetMessageStruct((int)MainCmdId, (enSocketType)m_socketType);
 		if (packetType == null)
 		{
 			Debug.LogError("客户端不存在消息对应的结构 " + MainCmdId + " " + SubCmdId);
