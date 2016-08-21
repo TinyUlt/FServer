@@ -95,19 +95,13 @@ public class MainNet : MonoBehaviour {
 		return data;
 	}
 	void startNet(string ip, int port){
-	
-//		var name = "test123123";
-//		var password = "123123";
-		MessageCenter.GetInstance ().ConnectServer (enSocketType.SocketType_Login,ip, port,()=>{
-			StartMainLogon(sessionid, uid);
 
-			Debug.Log("连接服务器成功 hh");
-
-
-
-			//SocketClient.m_socket.Send(result,0,result.Length,SocketFlags.None);
-			//SocketServer.Instance.SendMessage (_logonStruct,enSocketType.SocketType_Login);
-		});
+//		MessageCenter.GetInstance ().ConnectServer (enSocketType.SocketType_Login,ip, port,()=>{
+//			StartMainLogon(sessionid, uid);
+//
+//			Debug.Log("连接服务器成功 hh");
+//
+//		});
 	}
 	// Update is called once per frame
 	void Update () {
@@ -116,31 +110,12 @@ public class MainNet : MonoBehaviour {
 
 	public void StartMainLogon(string Sessionid, string Uid)
 	{
-//		CMD_GP_LogonAccounts _logonStruct = new CMD_GP_LogonAccounts();
-//
-//		_logonStruct.dwPlazaVersion = GameUtils.GetInstance().GetPlazaVersion();
-//		_logonStruct.szMachineID = GameUtils.GetInstance().GetMachineID();
-//		_logonStruct.dwClientIP = GameUtils.GetInstance().GetIP();
-//		_logonStruct.szPassword = GameUtils.GetInstance().GetMD5String(password);
-//		_logonStruct.szAccounts = accounts.ToCharArray();
-//		_logonStruct.cbValidateFlags = GameUtils.GetInstance().GetValidateFlags();
-//		_logonStruct.szPhonePassword = "".ToCharArray();
-//		_logonStruct.dwLogonType = GameUtils.GetInstance().GetLogonType();
-//		_logonStruct.dwClientVersion = 5003;
-//		_logonStruct.szCdkey = "264bfbefa3525dfc5107f6f2d1e68669".ToCharArray();
-
-		//UserData.GetInstance ().userPassword = password;
 
 		LoginRequest request = new LoginRequest();
 
 		request.Sessionid = sessionid;
 
 		request.Uid = uid;
-
-
-
-		//IMessage m = request;
-
 
 //		int msgId = 3;
 //

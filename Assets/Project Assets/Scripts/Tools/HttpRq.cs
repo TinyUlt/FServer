@@ -13,7 +13,7 @@ public class HttpRq : MonoBehaviour {
 
 	private string key = "#5954d87ccc24fe7527075f2629ec22d26e317af0";
 
-	private string url = "http://175.43.23.15:8080?cmd=1030";
+	private string url = "http://175.43.23.15:8080";
 
 	// Use this for initialization
 	IEnumerator Start ()
@@ -45,7 +45,6 @@ public class HttpRq : MonoBehaviour {
 		print (returnData);
 
 		var onePathDic = Json.Deserialize (returnData) as Dictionary<string, object>;
-
 
 		var data = onePathDic ["data"] as Dictionary<string, object>;
 

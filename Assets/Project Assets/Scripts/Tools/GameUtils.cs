@@ -62,34 +62,34 @@ public class GameUtils
     }
 
     //获取大厅版本，目前写死
-    public dword GetPlazaVersion()
-    {
-        return GetProcessVersion(13, 0, 3);
-
-        // return 101646339;//Convert.ToUInt32(((PRODUCT_VER) << 24) + (((cbMainVer)) << 16) + ((cbSubVer) << 8) + (cbBuildVer));
-    }
+//    public dword GetPlazaVersion()
+//    {
+//        return GetProcessVersion(13, 0, 3);
+//
+//        // return 101646339;//Convert.ToUInt32(((PRODUCT_VER) << 24) + (((cbMainVer)) << 16) + ((cbSubVer) << 8) + (cbBuildVer));
+//    }
 
     //获取框架版本
-    public dword GetFrameVersion()
-    {
-        return GetProcessVersion(6, 0, 3);
-    }
+//    public dword GetFrameVersion()
+//    {
+//        return GetProcessVersion(6, 0, 3);
+//    }
 
     //模块版本
-    public dword GetProcessVersion(byte cbMainVer, byte cbSubVer, byte cbBuildVer)
-    {
-        return (dword)(
-            (((byte)(Define.PRODUCT_VER)) << 24) +
-            (((byte)(cbMainVer)) << 16) +
-            ((byte)(cbSubVer) << 8)) +
-            ((byte)(cbBuildVer));
-    }
+//    public dword GetProcessVersion(byte cbMainVer, byte cbSubVer, byte cbBuildVer)
+//    {
+//        return (dword)(
+//            (((byte)(Define.PRODUCT_VER)) << 24) +
+//            (((byte)(cbMainVer)) << 16) +
+//            ((byte)(cbSubVer) << 8)) +
+//            ((byte)(cbBuildVer));
+//    }
 
     //获取标示
-    public byte GetValidateFlags()
-    {
-        return Messages.MB_VALIDATE_FLAGS | Messages.LOW_VER_VALIDATE_FLAGS;
-    }
+//    public byte GetValidateFlags()
+//    {
+//        return Messages.MB_VALIDATE_FLAGS | Messages.LOW_VER_VALIDATE_FLAGS;
+//    }
 
     //字符串转MD5
     public tchar[] GetMD5String(string strText)
@@ -318,26 +318,26 @@ public class GameUtils
         0L,99999,499999,999999,1499999,1999999,2999999,3999999,6999999,10999999,
         29999999,99999999,
         };
-    public int SelectRoomUserFaceID(tagUserInfo pUserInfo)
-    {
-        int wLevel = 1;
-        if (pUserInfo == null) return wLevel;
-
-        for (int i = 0; i < lLevelScore.Length; i++)
-        {
-            if (pUserInfo.lScore > lLevelScore[i])
-                wLevel = (i + 1);
-        }
-
-        if (pUserInfo.cbGender == 0)
-        {
-            return wLevel;
-        }
-        else
-        {
-            return wLevel + 12;
-        }
-    }
+//    public int SelectRoomUserFaceID(tagUserInfo pUserInfo)
+//    {
+//        int wLevel = 1;
+//        if (pUserInfo == null) return wLevel;
+//
+//        for (int i = 0; i < lLevelScore.Length; i++)
+//        {
+//            if (pUserInfo.lScore > lLevelScore[i])
+//                wLevel = (i + 1);
+//        }
+//
+//        if (pUserInfo.cbGender == 0)
+//        {
+//            return wLevel;
+//        }
+//        else
+//        {
+//            return wLevel + 12;
+//        }
+//    }
     public string RemoveComma(ref string aString)
     {
         if (aString.Length == 0) return "";
