@@ -6,6 +6,9 @@ using System.Collections.Generic;
 public class GameHttpClient : MonoBehaviour {
 
 	public GameInfo gameInfo;
+
+	public delegate void Action<T1, T2, T3, T4, T5> (T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5);
+
 	// Use this for initialization
 	void Start () {
 	
@@ -15,41 +18,44 @@ public class GameHttpClient : MonoBehaviour {
 	void Update () {
 	
 	}
-	public void NetConnect(Action<bool, string, string, string> callback){
+	public void NetConnect(Action<bool, int, string, string, string> callback){
 
 		Debug.Log ("[NetConnect]");
 
 		//测试本机网络
 		StartCoroutine (CheckNetConnect((netEnable) => {
 			
-			Debug.Log ("[NetConnect.CheckNetConnect]="+ netEnable);
-
 			if(netEnable){
 				//链接服务器
 				StartCoroutine (ServerNetConnect((isConnect, requrestData) => {
 
-					Debug.Log ("[NetConnect.ServerNetConnect, isConnect]="+ isConnect);
+					string sessionid = "";
 
-					Debug.Log ("[NetConnect.ServerNetConnect, requrestData]="+ requrestData);
+					string uid = "";
+
+					string gateway = "";
+
+					int error = -1;
 
 					if(isConnect){
 						//解析json
 						var onePathDic = Json.Deserialize (requrestData) as Dictionary<string, object>;
 
-						var data = onePathDic ["data"] as Dictionary<string, object>;
+						error = Convert.ToInt32( onePathDic ["error"] );
 
-						var gateway = Convert.ToString (data ["gateway"]);
+						if(error == 0){
+							
+							var data = onePathDic ["data"] as Dictionary<string, object>;
 
-						var uid = Convert.ToString(data ["uid"]);
+							gateway = Convert.ToString (data ["gateway"]);
 
-						var sessionid = Convert.ToString(data ["sessionid"]);
-						//返回给登录脚本
-						callback(true, sessionid, uid, gateway);
+							uid = Convert.ToString(data ["uid"]);
+
+							sessionid = Convert.ToString(data ["sessionid"]);
+						}
 					}
-					else{
-
-						callback(false, "", "", "");
-					}
+					//返回给登录脚本
+					callback(isConnect, error, sessionid, uid, gateway);
 				}));
 			}
 		}));

@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Net;
 public class GameTcpClient : MonoBehaviour {
 
+
 	enum SocketState{
 		None,           //无
 		Connecting,     //链接中
@@ -18,13 +19,19 @@ public class GameTcpClient : MonoBehaviour {
 		SocketError,    //出现错误
 		CloseConnect,   //关闭链接
 	}
-
-	private SocketState socketState;
-
-	private Socket socketClient;
-
-	private bool isConnect = false;
-
+	private const int PACKET_HEAD_SIZE =8; //包头 4 ＋ 2 ＋ 2 (GTV1, msgId, msg
+	//网络状态
+	private SocketState m_socketState;
+	//
+	private Socket m_socket;
+	//是否连接中
+	private bool m_isConnect = false;
+	//是否需要关闭连接
+	private bool m_needClose = false;
+	//
+	private Action<bool> m_callbackOnConnect;
+	//
+	private Action m_callbackOnDisConnect;
 	//发包
 	private System.Object m_sendObject;
 	private ManualResetEvent m_sendEvent;
@@ -41,101 +48,244 @@ public class GameTcpClient : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		OnRun ();
+	}
+	public void OnRun(){
+
+		if (m_socketState == SocketState.ConnectSuccess) {
+			
+			if (m_callbackOnConnect != null) {
+
+				m_callbackOnConnect (true);
+			}
 	
+			m_socketState = SocketState.ConnectEnd;
+
+		} else if (m_socketState == SocketState.ConnectFail) {
+			
+			if (m_callbackOnConnect != null) {
+
+				m_callbackOnConnect (false);
+			}
+			m_socketState = SocketState.ConnectEnd;
+
+		} else if (m_socketState == SocketState.SocketError) {
+			
+			if (m_callbackOnDisConnect != null) {
+				
+				m_callbackOnDisConnect ();
+			}
+			m_socketState = SocketState.ConnectEnd;
+		}
+		if (m_isConnect == false) {
+
+			return;
+		}
+		if (m_needClose == true) {
+
+			Close ();
+
+			return;
+		}
+
+
+		//发包队列
+		if (m_ReceivePackList != null && m_ReceivePackList.Count != 0) {
+			
+			Queue<IMessage> sendQueue = new Queue<IMessage> ();
+
+			lock (m_receiveObject) {
+				
+				while (m_ReceivePackList.Count > 0) {
+					
+					sendQueue.Enqueue (m_ReceivePackList.First.Value);
+
+					m_ReceivePackList.RemoveFirst ();
+				}
+			}
+			while(sendQueue.Count > 0){
+
+				GameMessagehandler.MessageDispatch (sendQueue.Dequeue ());
+			}
+		}
 	}
 
-	public void init(string ip, string port, Action<bool> callback){
+	//初始化网络
+	public bool init(string ip, string port, Action<bool> callback){
 	
-		callbackOnConnect = callback;
+		if (m_isConnect) {
+			
+			Close ();
+		}
 
-		IPEndPoint ipe =new IPEndPoint(IPAddress.Parse(ip), Convert.ToInt32(port));
+		try{
 
-		socketClient = new Socket (AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+			Debug.Log("连接服务器 " + ip + " " + port);
 
-		socketClient.BeginConnect(ipe,new AsyncCallback(OnSocketConnectResult),socketClient);
+			callbackOnConnect = callback;
+
+			IPEndPoint ipe = new IPEndPoint (IPAddress.Parse (ip), Convert.ToInt32 (port));
+
+			m_socket = new Socket (AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+
+			m_socket.BeginConnect (ipe, new AsyncCallback (OnSocketConnectResult), m_socket);
+
+			m_socketState = SocketState.Connecting;
+		}
+		catch(Exception e){
+			
+			Debug.LogError ("连接服务器失败!!!"+e);
+
+			m_isConnect = false;
+
+			m_socketState = SocketState.ConnectFail;
+
+			return false;
+		}
+
+		return true;
 	}
 
+	//网络连接结果
 	private void OnSocketConnectResult(IAsyncResult result){
 		
 		Socket s = (Socket)result.AsyncState;
 
 		if (s.Connected) {
 			
-			isConnect = true;
+			m_isConnect = true;
 
 			InitNetLoopThread();
 
-			socketState = SocketState.ConnectSuccess;
+			m_socketState = SocketState.ConnectSuccess;
 
 			callbackOnConnect (true);
 
 		} else {
-			
-			Debug.LogError ("连接服务器失败 ");
 
-			socketState = SocketState.ConnectFail;
+			m_socketState = SocketState.ConnectFail;
 
 			callbackOnConnect (false);
 		}
 	}
 
+	//初始化循环线程
 	private void InitNetLoopThread(){
 		Debug.Log ("[InitNetLoopThread]");
+
 		m_SendPackList = new LinkedList<IMessage> ();
+
 		m_sendObject = new object ();
+
 		m_sendEvent = new ManualResetEvent (false);
 
 		m_ReceivePackList = new LinkedList<IMessage> ();
+
 		m_receiveObject = new object ();
 
 		Thread receiveThread = new Thread (ReceiveLoopThread);
+
 		receiveThread.Start ();
+
 		Thread sendThread = new Thread (SendLoopThread);
+
 		sendThread.Start ();
 
 	}
+	//暂存容器
+	byte[] piece;
+	//消息长度
+	int msglen = 0;
+	//消息id
+	int msgId = -1;
 	//收包轮循
 	private void ReceiveLoopThread(){
-		Debug.Log("ReceiveLoopThread start");
-//		m_receiveHead = new byte[PACKET_HEAD_SIZE];//总长度 大id 小id
-		while (socketClient != null && isConnect == true &&  socketClient.Connected) {
+		
+		Debug.Log("[ReceiveLoopThread]");
+
+		while (m_socket != null && m_isConnect == true &&  m_needClose == false && m_socket.Connected) {
 			try{
-				if (socketClient.Available > 0) {
-					Debug.Log("[socketClient.Available > 0]="+socketClient.Available);
-//					if (m_receivehead == null && m_currentPacketLength == 0 && m_socket.Available > PACKET_HEAD_SIZE) { //接收包头
-//						m_socket.Receive (m_receiveHead, PACKET_HEAD_SIZE, SocketFlags.None);
-//						ByteBuffer buffer = new ByteBuffer (m_receiveHead);
-//						m_receivehead = new TCP_Info();
-//						m_receivehead.Deserialize(buffer);
-//						m_currentPacketLength = m_receivehead.wPacketSize - PACKET_HEAD_SIZE; //总长度减去包头长度
-//					}
-//					if (m_receivehead != null && m_currentPacketLength > 0 /*&& m_socket.Available >= m_currentPacketLength*/) { //接收包
-//						byte[] bodyBytes = new byte[m_currentPacketLength];
-//						int receiveBuffSize = 0;
-//						while(receiveBuffSize < m_currentPacketLength && m_isConnect == true){
-//							int tempSize = m_socket.Receive (bodyBytes,receiveBuffSize, m_currentPacketLength - receiveBuffSize, SocketFlags.None);
-//							receiveBuffSize += tempSize;
-//							Thread.Sleep(1);
-//						}
-//						if(receiveBuffSize == m_currentPacketLength){
-//							DeserializePacket(bodyBytes,m_receivehead);
-//							m_currentPacketLength = 0;
-//							m_receivehead = null;
-//						}else{
-//							Debug.LogError ("ReceiveLoopThread error 接收包长度错误");
-//							m_needClose = true;
-//						}
-//						//m_socket.Receive (bodyBytes, m_currentPacketLength, SocketFlags.None);
-//
-//					}
-//
+				if (m_socket.Available > 0) {
+
+					if (piece == null && msglen == 0 && m_socket.Available > PACKET_HEAD_SIZE) { //接收包头
+						
+						piece = new byte[PACKET_HEAD_SIZE];
+						//获取头 8 个字节
+						m_socket.Receive (piece, PACKET_HEAD_SIZE, SocketFlags.None);
+
+						byte[] mMagic  =  new byte[4];
+						//获取描述4个字节
+						for(var i = 0 ; i < mMagic.Length; i++){
+
+							mMagic[i] = piece[i];
+						}
+						string mMagicStr = System.Text.Encoding.Default.GetString ( mMagic );
+						//判断描述
+						if(mMagicStr == "GTV1"){
+
+							msgId = (piece[4] << 8) + piece[5];
+
+							msglen = (piece[6] << 8) + piece[7];
+
+						}else{
+
+							Debug.Log("描述错误!!!"+mMagic);
+
+							piece = null;
+
+							msgId = -1;
+
+							msglen = 0;
+
+							m_needClose = true;
+						}
+					}
+					if (piece != null && msglen > 0 && msgId > 0) { //接收包
+						
+						byte[] bodyBytes = new byte[msglen];
+
+						int receiveBuffSize = 0;
+
+						while(receiveBuffSize < msglen && m_isConnect == true){
+							
+							int tempSize = m_socket.Receive (bodyBytes,receiveBuffSize, msglen - receiveBuffSize, SocketFlags.None);
+
+							receiveBuffSize += tempSize;
+
+							Thread.Sleep(1);
+						}
+						if(receiveBuffSize == msglen){
+
+							codeData (bodyBytes);
+
+							IMessage packet = GameMessagehandler.DeserializePacket(bodyBytes,msgId);
+
+							lock (m_receiveObject) {
+								
+								m_ReceivePackList.AddLast (packet);
+							}
+
+							msglen = 0;
+
+							piece = null;
+
+						}else{
+							
+							Debug.LogError ("ReceiveLoopThread error 接收包长度错误");
+
+							m_needClose = true;
+						}
+					}
 				} else {
+					
 					Thread.Sleep (10);
 				}
 			}
 			catch(Exception e){
-//				Debug.LogError ("ReceiveLoopThread error "+e);
-//				m_needClose = true;
+				
+				Debug.LogError ("ReceiveLoopThread error "+e);
+
+				m_needClose = true;
 			}
 		}
 		Debug.Log ("ReceiveLoopThread die");
@@ -144,7 +294,9 @@ public class GameTcpClient : MonoBehaviour {
 	//发包轮循
 	private void SendLoopThread(){
 		
-		while (isConnect) {
+		Debug.Log("[SendLoopThread]");
+
+		while (m_isConnect) {
 			
 			Queue<IMessage> sendQueue = new Queue<IMessage> ();
 
@@ -202,7 +354,7 @@ public class GameTcpClient : MonoBehaviour {
 							result[i + mMagic.Length + 2 + 2] = loads[i];
 						}
 
-						socketClient.Send(result,0,lenght,SocketFlags.None);
+						m_socket.Send(result,0,lenght,SocketFlags.None);
 					}
 					catch(Exception e){
 						
@@ -235,12 +387,21 @@ public class GameTcpClient : MonoBehaviour {
 		m_sendEvent.Set ();
 	}
 
+	public void Close(){
+		
+		m_isConnect = false;
 
+		if (m_socket != null) {
 
-	/////////////////////
-	/// 
-	/// 
-//	public sendLoginRequest(string ip ){
-//		
-//	}
+			m_socket.Close();
+
+			m_socket = null;
+		}
+
+	}
+
+	void OnDestroy()
+	{
+		Close ();
+	}
 }

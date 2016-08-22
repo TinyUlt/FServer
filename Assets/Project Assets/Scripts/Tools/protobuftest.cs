@@ -36,8 +36,9 @@ public class protobuftest : MonoBehaviour {
 		var data = john.ToByteArray ();
 
 
-		var john2 = LoginRequest.Parser.ParseFrom (data);
+		var john2 = DescriptorProto.Parser.ParseFrom (data);
 
+		var nanana = john2.Name;
 //		using (var output = File.Create("john.dat"))
 //		{
 //			john.WriteTo(output);
@@ -56,7 +57,7 @@ public class protobuftest : MonoBehaviour {
 //			}
 //			//john2 = Person.Parser.ParseFrom(input);
 //		}
-		var a = john2.Uid;
+		//var a = john2.Uid;
 
 		//DescriptorProto
 

@@ -21,35 +21,59 @@ public class GameLogin : MonoBehaviour {
 
 		Debug.Log ("[TryLogin]");
 
-		httpClient.NetConnect ((isConnectHttp, sessionid, uid, gateway)=>{
+		httpClient.NetConnect ((isConnectNet, errorCode, sessionid, uid, gateway)=>{
 			
-			Debug.Log ("[TryLogin NetConnect]="+isConnectHttp);
+			if(isConnectNet){
 
-			if(isConnectHttp){
+				Debug.Log("网络活跃");	
 
-				var ip_port = gateway.Split (':');
+				if(errorCode == 0){
 
-				var ip = ip_port [0];
+					//var a = ;
+					Debug.Log(string.Format("http 服务器请求成功，获取数据. gateway:{0}, sessionid:{1}, uid:{2}", gateway, sessionid, uid));
 
-				var port = ip_port [1];
+					var ip_port = gateway.Split (':');
 
-				tcpClient.init(ip, port, (isConnectTcp)=>{
+					var ip = ip_port [0];
 
-					Debug.Log ("[TryLogin TCPconnect]="+isConnectTcp);
+					var port = ip_port [1];
 
-					if(isConnectTcp){
+					bool isCreated = tcpClient.init(ip, port, (isConnectTcp)=>{
 
-						GameMessagehandler.init();
+						if(isConnectTcp){
 
-						LoginRequest request = new LoginRequest();
+							Debug.Log("tcp 服务器连接成功");	
 
-						request.Sessionid = sessionid;
+							GameMessagehandler.init();
 
-						request.Uid = uid;
+							LoginRequest request = new LoginRequest();
 
-						tcpClient.SendPacket(request);
+							request.Sessionid = sessionid;
+
+							request.Uid = uid;
+
+							tcpClient.SendPacket(request);
+						
+						}else{
+
+							Debug.Log("tcp 服务器连接失败!!!");	
+						}
+					});
+					if(isCreated){
+
+						Debug.Log("创建网络成功");
+					}else{
+						
+						Debug.Log("创建网络失败!!!");
 					}
-				});
+				}else{
+
+					Debug.Log("登录错误!!!:"+errorCode);
+				}
+
+			}else{
+				
+				Debug.Log("网络不活跃，请检测网络!!!");				
 			}
 		});
 	}
