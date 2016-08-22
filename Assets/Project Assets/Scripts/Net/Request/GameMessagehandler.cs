@@ -7,50 +7,51 @@ using System;
 public static class GameMessagehandler {
 
 	//发送
-	public static Dictionary<string, int> RequsetIds;
+	public static Dictionary<Type, int> RequsetIdsByType;
+
+	public static Dictionary<string, int> RequsetIdsByName;
 	//接受
-	public static Dictionary<int, string> MsgMaps;
+	public static Dictionary<int, Type> MsgMaps;
 
 	public static void init(){
 
-		RequsetIds = new Dictionary<string, int> ();
+		RequsetIdsByType = new Dictionary<Type, int> ();
 
-		MsgMaps = new Dictionary<int, string> ();
+		RequsetIdsByName = new Dictionary<string, int> ();
 
-		setReflect (3,  "LoginRequest");
+		MsgMaps = new Dictionary<int, Type> ();
 
-		setReflect (4,  "LoginResponse");
+		//消息的定义
+		setReflect (1,  typeof(HHRequest));
+
+		setReflect (2,  typeof(HHResponse));
+
+		setReflect (3,  typeof(LoginRequest));
+
+		setReflect (4,  typeof(LoginResponse));
 	}
 
-	public static void setReflect(int id, string type){
+	public static void setReflect(int id, Type type){
 
-		RequsetIds.Add (type, id);
+		RequsetIdsByType.Add (type, id);
+
+		RequsetIdsByName.Add (type.Name, id);
 
 		MsgMaps.Add (id, type);
 	}
 
 	public static IMessage DeserializePacket(byte[] data, int id){
 
-		IMessage msg = null;
+		var type = MsgMaps [id];
 
-		var name = MsgMaps [id];
+		IMessage msg = System.Activator.CreateInstance (type) as IMessage;
 
-		switch (name) {
-
-		case "LoginResponse":
-			{
-				msg = LoginResponse.Parser.ParseFrom(data);
-				break;
-			}
-		default:
-			{
-				break;
-			}
-		}
+		msg.MergeFrom (data);
 
 		return msg;
 	}
 
+	//消息分发
 	public static void MessageDispatch(IMessage msg){
 
 		var name = msg.Descriptor.Name;

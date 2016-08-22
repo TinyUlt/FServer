@@ -25,7 +25,7 @@ public class GameTcpClient : MonoBehaviour {
 	//
 	private Socket m_socket;
 	//是否连接中
-	private bool m_isConnect = false;
+	public bool m_isConnect = false;
 	//是否需要关闭连接
 	private bool m_needClose = false;
 	//
@@ -319,7 +319,7 @@ public class GameTcpClient : MonoBehaviour {
 					
 					try{
 
-						int msgId = GameMessagehandler.RequsetIds[packet.Descriptor.Name];
+						int msgId = GameMessagehandler.RequsetIdsByName[packet.Descriptor.Name];
 
 						var loads = packet.ToByteArray ();
 
